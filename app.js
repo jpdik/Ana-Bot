@@ -61,8 +61,6 @@ function analisarResponderMensagem(input, chat){
         if(input.sender.id in users){
             users[input.sender.id].context = res.context;
         }
-        
-        console.log(res.output.generic);
           
         if(res.output.generic[0].response_type != 'text'){
             chat.say({
@@ -80,7 +78,7 @@ function analisarResponderMensagem(input, chat){
             }, { typing: true });
         }
         else if(res.output.text.length > 0){
-            chat.say(res.output.text, { typing: true });
+            chat.say(res.output.text, { typing: 10000 });
         }      
     });
 }
