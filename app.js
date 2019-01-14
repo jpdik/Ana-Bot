@@ -34,7 +34,7 @@ bot.on('message', (input, chat) => {
     analisarResponderMensagem(input, chat);
 });
 
-bot.start();
+bot.start(process.env.PORT || 3000);
 
 function construirCenario(input, username){
     var payload = {
