@@ -65,7 +65,7 @@ function analisarResponderMensagem(input, chat){
         if(res.output.generic[0].response_type != 'text'){
             var cards = []
             for(var i in res.output.generic)
-                cards.append({ 
+                cards.push({ 
                     title: res.output.generic[i].title,
                     image_url: res.output.generic[i].source,
                     subtitle : res.output.generic[i].description,
