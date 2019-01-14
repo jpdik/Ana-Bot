@@ -4,7 +4,7 @@
   "description": "Bot interativo para divulgação social dos cursos de mestrado de computação móvel do instituto politécnico da guarda",
   "main": "app.js",
   "scripts": {
-    "test": "node app.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
