@@ -64,7 +64,7 @@ function analisarResponderMensagem(input, chat){
         
         console.log(res.output.generic);
           
-        if(res.output.generic.length > 0){
+        if(res.output.generic[0].response_type != 'text'){
             chat.say({
                 cards: [
                     { 
