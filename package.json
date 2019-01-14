@@ -1,0 +1,23 @@
+{
+  "name": "ana-bot",
+  "version": "1.0.0",
+  "description": "Bot interativo para divulgação social dos cursos de mestrado de computação móvel do instituto politécnico da guarda",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpdik/Ana-Bot.git"
+  },
+  "author": "João Paulo de Melo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jpdik/Ana-Bot/issues"
+  },
+  "homepage": "https://github.com/jpdik/Ana-Bot#readme",
+  "dependencies": {
+    "dotenv": "^6.2.0",
+    "watson-developer-cloud": "^3.15.1"
+  }
+}
