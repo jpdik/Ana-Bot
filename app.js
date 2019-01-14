@@ -75,10 +75,10 @@ function analisarResponderMensagem(input, chat){
                         } 
                     }
                 ],
-            }, { typing: true });
+            }, { typing: 3000 });
         }
         else if(res.output.text.length > 0){
-            chat.say(res.output.text, { typing: 10000 });
+            chat.say(res.output.text, { typing: 3000 });
         }      
     });
 }
