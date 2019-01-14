@@ -63,18 +63,19 @@ function analisarResponderMensagem(input, chat){
         }
           
         if(res.output.generic[0].response_type != 'text'){
+            var cards = []
+            for(var i in res.output.generic)
+                cards.append({ 
+                    title: res.output.generic[i].title,
+                    image_url: res.output.generic[i].source,
+                    subtitle : res.output.generic[i].description,
+                    default_action: {
+                        "type": "web_url",
+                        "url": res.output.text[i]
+                    } 
+                })
             chat.say({
-                cards: [
-                    { 
-                        title: res.output.generic[0].title,
-                        image_url: res.output.generic[0].source,
-                        subtitle : res.output.generic[0].description,
-                        default_action: {
-                            "type": "web_url",
-                            "url": res.output.text[0]
-                        } 
-                    }
-                ],
+                cards: cards,
             }, { typing: 3000 });
         }
         else if(res.output.text.length > 0){
