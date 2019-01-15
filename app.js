@@ -20,7 +20,7 @@ const assistant = new watson.AssistantV1({
 var users = {
 }
 
-bot.on('message', (input, chat) => {
+bot.on(['message', 'postback'], (input, chat) => {
     chat.sendTypingIndicator(5000);
     
     if(!(input.sender.id in users)){
