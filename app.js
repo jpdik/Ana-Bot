@@ -61,19 +61,20 @@ function analisarResponderMensagem(input, chat){
         if(input.sender.id in users){
             users[input.sender.id].context = res.context;
         }
-          
+
         if(res.output.generic[0].response_type != 'text'){
             var cards = []
-            for(var i in res.output.generic)
+            for(var i=0; i < res.output.generic.length; i+=2)
                 cards.push({ 
                     title: res.output.generic[i].title,
                     image_url: res.output.generic[i].source,
                     subtitle : res.output.generic[i].description,
                     default_action: {
                         "type": "web_url",
-                        "url": res.output.text[i]
+                        "url": res.output.generic[i+1].text
                     } 
                 })
+
             chat.say({
                 cards: cards,
             }, { typing: 3000 });
