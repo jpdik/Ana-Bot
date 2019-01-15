@@ -20,13 +20,32 @@ const assistant = new watson.AssistantV1({
 var users = {
 }
 
-bot.on(['message', 'postback'], (input, chat) => {
+bot.on('message', (input, chat) => {
     chat.sendTypingIndicator(5000);
     
     if(!(input.sender.id in users)){
         chat.getUserProfile().then((user) => {
             construirCenario(input, user.first_name);
             analisarResponderMensagem(input, chat);
+        });
+        return;
+    }
+    
+    analisarResponderMensagem(input, chat);
+});
+
+bot.on('postback:GET_STARTED_PAYLOAD', (input, chat) => {
+    chat.sendTypingIndicator(5000);
+
+    var data = {
+        sender: { id: input.sender.id},
+        message: { text: input.postback.title }
+    };
+
+    if(!(input.sender.id in users)){
+        chat.getUserProfile().then((user) => {
+            construirCenario(data, user.first_name);
+            analisarResponderMensagem(data, chat);
         });
         return;
     }
