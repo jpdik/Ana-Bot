@@ -36,12 +36,12 @@ bot.on('message', (input, chat) => {
 
 bot.on('postback:GET_STARTED_PAYLOAD', (input, chat) => {
     chat.sendTypingIndicator(5000);
-
+    
     var data = {
         sender: { id: input.sender.id},
         message: { text: input.postback.title }
     };
-
+    
     if(!(input.sender.id in users)){
         chat.getUserProfile().then((user) => {
             construirCenario(data, user.first_name);
@@ -80,26 +80,29 @@ function analisarResponderMensagem(input, chat){
         if(input.sender.id in users){
             users[input.sender.id].context = res.context;
         }
-
-        if(res.output.generic[0].response_type != 'text'){
-            var cards = []
-            for(var i=0; i < res.output.generic.length; i+=2)
+        
+        var i;
+        for(i=0;i < res.output.generic.length; i++){
+            if(res.output.generic[i].response_type != 'text'){
+                var cards = []
+                
                 cards.push({ 
                     title: res.output.generic[i].title,
                     image_url: res.output.generic[i].source,
                     subtitle : res.output.generic[i].description,
                     default_action: {
                         "type": "web_url",
-                        "url": res.output.generic[i+1].text
+                        "url": res.output.generic[++i].text
                     } 
                 })
-
-            chat.say({
-                cards: cards,
-            }, { typing: 3000 });
-        }
-        else if(res.output.text.length > 0){
-            chat.say(res.output.text, { typing: 3000 });
-        }      
+                
+                chat.say({
+                    cards: cards,
+                }, { typing: 3000 });
+            }
+            else if(res.output.generic[i].text.length > 0){
+                chat.say(res.output.text, { typing: 3000 });
+            }    
+        }  
     });
 }
