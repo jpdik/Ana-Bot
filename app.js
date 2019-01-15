@@ -101,7 +101,7 @@ function analisarResponderMensagem(input, chat){
                 }, { typing: 3000 });
             }
             else if(res.output.generic[i].text.length > 0){
-                chat.say(res.output.text, { typing: 3000 });
+                chat.say(res.output.generic[i].text, { typing: 3000 });
             }    
         }  
     });
