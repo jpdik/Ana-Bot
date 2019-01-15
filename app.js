@@ -81,12 +81,12 @@ function analisarResponderMensagem(input, chat){
             users[input.sender.id].context = res.context;
         }
         
+        var messages = [];
         var cards = [];
-        var texts = [];
         
         for(var i=0; i < res.output.generic.length; i++){
-            if(res.output.generic[0].response_type != 'text'){
-                cards.push({ 
+            if(res.output.generic[i].response_type != 'text'){
+                messages.push({ 
                     title: res.output.generic[i].title,
                     image_url: res.output.generic[i].source,
                     subtitle : res.output.generic[i].description,
@@ -97,18 +97,34 @@ function analisarResponderMensagem(input, chat){
                 })
             }
             else{
-                texts.push(
+                messages.push(
                     res.output.generic[i].text
                     );
                 }
             }
-            if(cards.length > 0)
-            chat.say({
-                cards: cards,
-            }, { typing: 3000 }).then((res) => {
-                if(texts.length > 0){
-                    chat.say(texts, { typing: 3000 });
-                }      
-            });
+
+            for(var i in messages){
+                if(typeof messages[i] === 'object'){
+                    cards.push(messages[i]);
+                    continue;
+                }
+                else{
+                    console.log(messages[i]);
+                    if(cards.length > 0){
+                        chat.say({
+                            cards: cards,
+                        }, { typing: 1000*i });
+                        cards = [];
+                    }
+                    chat.say(messages[i], { typing: 1500*i });
+                }
+            }
+            // Se ainda tiver algum cartão guardado (seja ultima informação a ser enviada).
+            if(cards.length > 0){
+                chat.say({
+                    cards: cards,
+                }, { typing: 1000*messages.length });
+                cards = [];
+            }
         });
     }
