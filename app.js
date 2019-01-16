@@ -62,7 +62,7 @@ bot.on('postback', (input, chat) => {
     }
 
     // Usuário já possui sessão, simplesmente analisa-se sua mensagem.
-    analisarResponderMensagem(input, chat);
+    analisarResponderMensagem(data, chat);
 });
 
 // Constroi o cenário de sessão do usuário (fluxo de conversação, variáveis memorizadas, entre outras infomrações).
