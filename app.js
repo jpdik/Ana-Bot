@@ -4,6 +4,10 @@ const BootBot = require('bootbot');
 const watson = require('watson-developer-cloud');
 const fetch = require('node-fetch');
 
+// Tempo para as mensagens aparecerem
+const TIME_CARD = 500;
+const TIME_MESSAGE = 750;
+
 
 // Configuração do messenger
 const bot = new BootBot({
@@ -150,18 +154,18 @@ function analisarResponderMensagem(input, chat){
                     if(cards.length > 0){
                         chat.say({
                             cards: cards,
-                        }, { typing: 1000*i });
+                        }, { typing: cards.length*TIME_CARD*i });
                         cards = [];
                     }
                     // envia a mensagem simples
-                    chat.say(messages[i], { typing: 1500*i });
+                    chat.say(messages[i], { typing: messages[i].length*TIME_MESSAGE*i });
                 }
             }
             // Se ainda tiver algum cartão guardado (será ultima informação a ser enviada).
             if(cards.length > 0){
                 chat.say({
                     cards: cards,
-                }, { typing: 1000*messages.length });
+                }, { typing: cards.length*TIME_CARD*messages.length });
                 cards = [];
             }
         });
