@@ -5,8 +5,8 @@ const watson = require('watson-developer-cloud');
 const fetch = require('node-fetch');
 
 // Tempo para as mensagens aparecerem
-const TIME_CARD = 500;
-const TIME_MESSAGE = 750;
+const TIME_CARD = 1000;
+const TIME_MESSAGE = 1500;
 
 
 // Configuração do messenger
