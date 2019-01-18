@@ -5,8 +5,8 @@ const watson = require('watson-developer-cloud');
 const fetch = require('node-fetch');
 
 // Tempo para as mensagens aparecerem
-const TIME_CARD = 100;
-const TIME_MESSAGE = 150;
+const TIME_CARD = 2000;
+const TIME_MESSAGE = 3000;
 
 
 // Configuração do messenger
@@ -154,18 +154,18 @@ function analisarResponderMensagem(input, chat){
                     if(cards.length > 0){
                         chat.say({
                             cards: cards,
-                        }, { typing: TIME_CARD*i+(i*200) });
+                        }, { typing: TIME_CARD+(i*1000) });
                         cards = [];
                     }
                     // envia a mensagem simples
-                    chat.say(messages[i], { typing: TIME_MESSAGE*i+(i*200) });
+                    chat.say(messages[i], { typing: TIME_MESSAGE+(i*1000) });
                 }
             }
             // Se ainda tiver algum cartão guardado (será ultima informação a ser enviada).
             if(cards.length > 0){
                 chat.say({
                     cards: cards,
-                }, { typing: TIME_CARD*i+(messages.length+200) });
+                }, { typing: TIME_CARD+(messages.length*1000) });
                 cards = [];
             }
         });
