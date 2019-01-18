@@ -154,18 +154,18 @@ function analisarResponderMensagem(input, chat){
                     if(cards.length > 0){
                         chat.say({
                             cards: cards,
-                        }, { typing: cards.length*TIME_CARD+(i*100) });
+                        }, { typing: TIME_CARD*i+(i*200) });
                         cards = [];
                     }
                     // envia a mensagem simples
-                    chat.say(messages[i], { typing: messages[i].length*TIME_MESSAGE+(i*100) });
+                    chat.say(messages[i], { typing: TIME_MESSAGE*i+(i*200) });
                 }
             }
             // Se ainda tiver algum cartão guardado (será ultima informação a ser enviada).
             if(cards.length > 0){
                 chat.say({
                     cards: cards,
-                }, { typing: cards.length*TIME_CARD*+(messages.length*150) });
+                }, { typing: TIME_CARD*i+(messages.length+200) });
                 cards = [];
             }
         });
