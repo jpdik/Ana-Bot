@@ -43,7 +43,7 @@ bot.on('message', (input, chat) => {
 
 // Caso o bot faça uma chamada a um botão, força ao botão ser tratado como uma mensagem normal.
 bot.on('postback', (input, chat) => {
-
+    
     chat.sendTypingIndicator(5000);
     
     // Reconstroi o postback como a mensagem normal enviada pro usuário.
@@ -60,7 +60,7 @@ bot.on('postback', (input, chat) => {
         });
         return;
     }
-
+    
     // Usuário já possui sessão, simplesmente analisa-se sua mensagem.
     analisarResponderMensagem(data, chat);
 });
@@ -105,15 +105,15 @@ function analisarResponderMensagem(input, chat){
             if(res.output.generic[i].response_type != 'text'){
                 // se a mensagem que é informada junto ao card for um link, cria um card do tipo link.
                 if(res.output.generic[i+1].text.indexOf('http') !== -1)
-                    messages.push({ 
-                        title: res.output.generic[i].title,
-                        image_url: res.output.generic[i].source,
-                        subtitle : res.output.generic[i].description,
-                        default_action: {
-                            "type": "web_url",
-                            "url": res.output.generic[++i].text
-                        } 
-                    })
+                messages.push({ 
+                    title: res.output.generic[i].title,
+                    image_url: res.output.generic[i].source,
+                    subtitle : res.output.generic[i].description,
+                    default_action: {
+                        "type": "web_url",
+                        "url": res.output.generic[++i].text
+                    } 
+                })
                 // se a mensagem que é informada junto ao card for algo diferente de um link, cria um card do tipo comando.
                 else{
                     messages.push({ 
@@ -128,12 +128,15 @@ function analisarResponderMensagem(input, chat){
             }
             // Caso seja uma mensagem normal, simplesmente anexa a normalmente no fluxo de conversa.
             else{
+                // Se ouver várias mensagens, as divide em um array e as entrega em sequência.
+                var messages_list = res.output.generic[i].text.split('\n');
+                for(var message in messages_list)
                 messages.push(
-                    res.output.generic[i].text
+                    messages_list[message]
                     );
                 }
             }
-
+            
             // realiza a sequenciação de envio das mensagens pelo bot.
             for(var i in messages){
                 // Caso as mensagens seguidas sejam os cards(objects), simplesmente as agrupa.
@@ -163,6 +166,6 @@ function analisarResponderMensagem(input, chat){
             }
         });
     }
-
-// Inicializa o serviço de comunicação com o messenger. Utiliza uma variável de ambiente de porta caso exista, senão é utilizada a porta 3000.
-bot.start(process.env.PORT || 3000);
+    
+    // Inicializa o serviço de comunicação com o messenger. Utiliza uma variável de ambiente de porta caso exista, senão é utilizada a porta 3000.
+    bot.start(process.env.PORT || 3000);
