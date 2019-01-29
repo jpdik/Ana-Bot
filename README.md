@@ -226,7 +226,7 @@ $ export VARNAME="value"
 C:\Users\your_user\Documents> set VARNAME="value"
 </pre>
 
-## colocando variáveis de ambiente na inicialização do sistema
+## Colocando variáveis de ambiente na inicialização do sistema
 
 Para que elas entrem em vigor sempre na inicialização do sistema, é preciso que elas sejam inseridas em determinados locais.
 
