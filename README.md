@@ -231,7 +231,7 @@ C:> set VARNAME="value"
 Para que elas entrem em vigor sempre na inicialização do sistema, é preciso que elas sejam inseridas em determinados locais.
 
 ### Linux ou MAC
-No arquivo .bash_profile ou .bashrc, insira os `export` que foram comentados no exemplo anterior.
+No arquivo `.bash_profile` ou `.bashrc`, insira os `export` que foram comentados no exemplo anterior.
 
 ### Windows
 
