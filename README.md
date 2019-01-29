@@ -223,7 +223,7 @@ $ export VARNAME="value"
 
 ### Windows 
 <pre>
-C:> set VARNAME="value"
+C:\Users\your_user\Documents> set VARNAME="value"
 </pre>
 
 ## colocando variáveis de ambiente na inicialização do sistema
@@ -263,7 +263,7 @@ $ ./ngrok http 3000
 Extraia o executável, e rode na linha de comando:
 
 <pre>
-$ ./ngrok http 3000
+C:\Users\your_user\Documents> ngrok.exe http 3000
 </pre>
 
 Você terá o resultado similar a esse:
