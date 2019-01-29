@@ -1,0 +1,7 @@
+{
+    "name": "Ana-Bot",
+    "description": "Bot interativo para divulgação social dos cursos de mestrado de computação móvel do instituto politécnico da guarda.",
+    "repository": "https://github.com/jpdik/Ana-Bot",
+    "logo": "https://i.imgur.com/ZsxAFJw.png",
+    "keywords": ["nodejs", "bot", "watson", "messenger"]
+}
