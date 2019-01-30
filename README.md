@@ -1,5 +1,5 @@
 # Ana-Bot
-Bot interativo para divulgação social dos cursos de mestrado de computação móvel do instituto politécnico da guarda.
+Bot interativo para divulgação social do curso de mestrado de computação móvel do instituto politécnico da guarda.
 
 
 <p align="center">
