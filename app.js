@@ -2,7 +2,6 @@
 require('dotenv').config();
 const BootBot = require('bootbot');
 const watson = require('watson-developer-cloud');
-const fetch = require('node-fetch');
 
 // Tempo para as mensagens aparecerem
 const TIME_CARD = 2000;
@@ -23,7 +22,7 @@ const assistant = new watson.AssistantV1({
     url:      process.env.WATSON_URL,
     version:  process.env.WATSON_VERSION
 });
-
+   
 // Variável de controle de usuários e suas sessões.
 var users = {
 }
@@ -170,6 +169,14 @@ function analisarResponderMensagem(input, chat){
             }
         });
     }
-    
+
+    bot.app.get('/', function (req, res) {
+        res.sendFile(__dirname + '/view/index.html');
+    });
+
+    bot.app.get('/privacy_policy', function (req, res) {
+        res.sendFile(__dirname + '/view/privacy_policy.html');
+    });
+
     // Inicializa o serviço de comunicação com o messenger. Utiliza uma variável de ambiente de porta caso exista, senão é utilizada a porta 3000.
     bot.start(process.env.PORT || 3000);
